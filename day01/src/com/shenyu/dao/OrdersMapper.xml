@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.shenyu.dao.OrdersDao">
+ 
+ <select id="findById" parameterType="int" resultType="com.shenyu.entity.Orders">
+ 		select * from orders s,user u where s.id = #{id} and s.user_id=u.id 
+ </select>
+ 
+ <select id="findAll"  resultType="com.shenyu.entity.Orders">
+ 		select * from orders o,user u where o.user_id=u.id	
+ </select>
+ 
+ <insert id="save">
+ 	insert into orders values(default,#{user_id},#{number},#{createTime},#{note});
+ </insert>
+ 
+ <update id="update">
+ 	update orders set user_id=#{user_id},number=#{number},createtime=#{createTime},note=#{note} where id=#{id}
+ </update>
+ 
+ <delete id="del">
+ 	delete from orders where id=#{id}
+ </delete>
+ 
+</mapper>
